@@ -51,7 +51,7 @@
                 android:layout_width="250dp"
                 android:layout_height="58dp"
                 android:id="@+id/editTextResult" android:layout_row="72" android:layout_column="12"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" android:autoText="false" android:inputType="none"/>
         <Button
                 android:layout_width="176dp"
                 android:layout_height="81dp"

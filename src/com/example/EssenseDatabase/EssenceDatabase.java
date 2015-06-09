@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ public class EssenceDatabase extends Activity {
     EditText editTextEuro = null;
     EditText editTextEuroLitre = null;
     EditText editTextResult = null;
+    int retry = 0;
 
     InputStream is=null;
     String result=null;
@@ -64,18 +66,26 @@ public class EssenceDatabase extends Activity {
         @Override
         public void onClick(View v){
             // Ici on vérifie les valeurs avant d'envoyer à la database
+            if (editTextEuro.getText().length() == 0 || editTextEuroLitre.getText().length() == 0 || editTextKm.getText().length() == 0){
+                Toast.makeText(getApplicationContext(), "Valeurs non correctes",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+            retry ++;
             int valueEuro = Integer.parseInt(editTextEuro.getText().toString());
             int valueEuroLitre = Integer.parseInt(editTextEuroLitre.getText().toString());
             int valueKm = Integer.parseInt(editTextKm.getText().toString());
             // on vérifie les valeurs
             if (!(valueEuro < 0 || valueEuroLitre < 0 || valueKm < 0 || valueEuro > 90 || valueEuroLitre > 3 || valueKm > 1500)){
                 // on envoi à la base de donnée
-                editTextResult.setText("Connexion...");
-                if (! insert()){
-
+                editTextResult.setText("Connexion... ("+ retry +")");
+                if (insert()){
+                    editTextResult.setText("Envoi effectué !");
+                    retry = 0;
                 }
                 else {
-
+                    Toast.makeText(getApplicationContext(), "Valeurs non correctes",
+                            Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -95,7 +105,7 @@ public class EssenceDatabase extends Activity {
         try
         {
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://88.142.52.11/insert.php");
+            HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
@@ -107,6 +117,7 @@ public class EssenceDatabase extends Activity {
             Log.e("Fail 1", e.toString());
             Toast.makeText(getApplicationContext(), "Invalid IP Address",
                     Toast.LENGTH_LONG).show();
+            return false;
         }
         try
         {
@@ -124,6 +135,7 @@ public class EssenceDatabase extends Activity {
         catch(Exception e)
         {
             Log.e("Fail 2", e.toString());
+            return false;
         }
 
         try
@@ -145,14 +157,17 @@ public class EssenceDatabase extends Activity {
         catch(Exception e)
         {
             Log.e("Fail 3", e.toString());
+            return false;
         }
 
     return true;
     }
 
     @Override
+    // méthode qui se lance lorsqu'on appuie sur le bouton meu du téléphone
     public boolean onCreateOptionsMenu(Menu menu) {
-        // getMenuInflater().inflate(R.layout.main, menu);
+        MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.layout.menu, menu);
         return true;
     }
 }
