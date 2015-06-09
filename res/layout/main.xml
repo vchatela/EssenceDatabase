@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:id="@+id/parent">
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome, to EssenceDatabase"
+            android:id="@+id/textCentral"/>
+    <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_gravity="center_horizontal"
+            android:id="@+id/central" android:rowCount="74" android:columnCount="13">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Kilométrage"
+                android:id="@+id/textViewKm" android:layout_row="3" android:layout_column="12"/>
+        <EditText
+                android:layout_width="382dp"
+                android:layout_height="61dp"
+                android:id="@+id/editTextKm" android:layout_row="53" android:layout_column="12"
+                android:inputType="number|numberDecimal"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Euros"
+                android:id="@+id/textViewEuro" android:layout_row="58" android:layout_column="12"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:id="@+id/editTextEuro" android:layout_row="65" android:layout_column="12"
+                android:inputType="numberDecimal"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="€/Litre"
+                android:id="@+id/textView" android:layout_row="68" android:layout_column="12"
+                />
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:id="@+id/editTextEuroLitre" android:layout_row="69" android:layout_column="12"
+                android:inputType="numberDecimal"/>
+        <EditText
+                android:layout_width="250dp"
+                android:layout_height="58dp"
+                android:id="@+id/editTextResult" android:layout_row="72" android:layout_column="12"
+                android:layout_gravity="center_horizontal"/>
+        <Button
+                android:layout_width="176dp"
+                android:layout_height="81dp"
+                android:text="@string/okButton"
+                android:id="@+id/okButton" android:layout_row="73" android:layout_column="0"
+                android:layout_gravity="center_horizontal" android:layout_columnSpan="13"/>
+    </GridLayout>
+</LinearLayout>
+
