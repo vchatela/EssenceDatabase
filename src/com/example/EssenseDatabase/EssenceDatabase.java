@@ -1,7 +1,6 @@
 package com.example.EssenseDatabase;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,14 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,7 +20,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import static android.view.View.*;
@@ -57,12 +51,15 @@ public class EssenceDatabase extends Activity {
         editTextEuroLitre = (EditText) findViewById(R.id.editTextEuroLitre);
         editTextResult = (EditText) findViewById(R.id.editTextResult);
         editTextKm = (EditText) findViewById(R.id.editTextKm);
-
+        editTextResult.setEnabled(false);
         // on attribue un listener adapté aux vue
         ValiderButton.setOnClickListener(validerButton);
+        // TODO : bar de progression
+        // TODO : graphisme à améliorer
 
     }
     private OnClickListener validerButton = new OnClickListener() {
+        // TODO : vérifier changement des valeurs si reclique alors que valeur déjà dans la base de donnée
         @Override
         public void onClick(View v){
             // Ici on vérifie les valeurs avant d'envoyer à la database
@@ -79,88 +76,53 @@ public class EssenceDatabase extends Activity {
             if (!(valueEuro < 0 || valueEuroLitre < 0 || valueKm < 0 || valueEuro > 90 || valueEuroLitre > 3 || valueKm > 1500)){
                 // on envoi à la base de donnée
                 editTextResult.setText("Connexion... ("+ retry +")");
-                if (insert()){
-                    editTextResult.setText("Envoi effectué !");
-                    retry = 0;
+                try {
+                    if (insert()){
+                        editTextResult.setText("Envoi effectué !");
+                        retry = 0;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), "Valeurs non correctes",
-                            Toast.LENGTH_LONG).show();
-                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Valeurs non correctes",
+                        Toast.LENGTH_LONG).show();
             }
 
         }
     };
-    public boolean insert(){
+    public boolean insert() throws InterruptedException {
         Date date = new Date();
-        DateFormat dateformat= new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateformat= new SimpleDateFormat("yyyy-MM-dd");
         String dateString = dateformat.format(date);
-
+/*
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
         nameValuePairs.add(new BasicNameValuePair("Prix",editTextEuro.getText().toString()));
         nameValuePairs.add(new BasicNameValuePair("Distance",editTextKm.getText().toString()));
         nameValuePairs.add(new BasicNameValuePair("PrixLitre",editTextEuroLitre.getText().toString()));
         nameValuePairs.add(new BasicNameValuePair("Date",dateString));
+*/      new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try
+                {
 
-        try
-        {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php");
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            HttpResponse response = httpclient.execute(httppost);
-            HttpEntity entity = response.getEntity();
-            is = entity.getContent();
-            Log.e("pass 1", "connection success ");
-        }
-        catch(Exception e)
-        {
-            Log.e("Fail 1", e.toString());
-            Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }
-        try
-        {
-            BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(is,"iso-8859-1"),8);
-            StringBuilder sb = new StringBuilder();
-            while ((line = reader.readLine()) != null)
-            {
-                sb.append(line + "\n");
+                    HttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
+                            "&Distance="+editTextKm.getText().toString()+"&PrixLitre="+editTextEuroLitre.getText().toString()+"&Date="+dateString);
+                    HttpResponse response = httpclient.execute(httppost);
+                    Log.e("pass 1", "connection success ");
+                }
+                catch(Exception e)
+                {
+                    Log.e("Fail 1", e.toString());
+                    Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                            Toast.LENGTH_LONG).show();
+                }
             }
-            is.close();
-            result = sb.toString();
-            Log.e("pass 2", "connection success ");
-        }
-        catch(Exception e)
-        {
-            Log.e("Fail 2", e.toString());
-            return false;
-        }
-
-        try
-        {
-            JSONObject json_data = new JSONObject(result);
-            code=(json_data.getInt("code"));
-
-            if(code==1)
-            {
-                Toast.makeText(getBaseContext(), "Inserted Successfully",
-                        Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(getBaseContext(), "Sorry, Try Again",
-                        Toast.LENGTH_LONG).show();
-            }
-        }
-        catch(Exception e)
-        {
-            Log.e("Fail 3", e.toString());
-            return false;
-        }
-
-    return true;
+        }).start();
+        return true;
     }
 
     @Override
