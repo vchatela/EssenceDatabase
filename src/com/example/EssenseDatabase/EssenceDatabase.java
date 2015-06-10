@@ -56,6 +56,7 @@ public class EssenceDatabase extends Activity {
         ValiderButton.setOnClickListener(validerButton);
         // TODO : bar de progression
         // TODO : graphisme à améliorer
+        // TODO : page accueil avec animation
 
     }
     //TODO : récupérer précédentes valeurs
@@ -114,7 +115,8 @@ public class EssenceDatabase extends Activity {
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
                             "&Distance="+editTextKm.getText().toString()+"&PrixLitre="+editTextEuroLitre.getText().toString()+"&Date="+dateString);
-                    HttpResponse response = httpclient.execute(httppost);
+                    // TODO : retirer pour éxécuter
+                    // httpclient.execute(httppost);
                     Log.e("pass 1", "connection success ");
                 }
                 catch(Exception e)
