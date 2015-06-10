@@ -58,6 +58,9 @@ public class EssenceDatabase extends Activity {
         // TODO : graphisme à améliorer
 
     }
+    //TODO : récupérer précédentes valeurs
+    //TODO :  reset des valeurs après envois
+    //TODO : nouvelle activité : résultat de la database (moyenne etc)
     private OnClickListener validerButton = new OnClickListener() {
         // TODO : vérifier changement des valeurs si reclique alors que valeur déjà dans la base de donnée
         @Override
@@ -69,9 +72,9 @@ public class EssenceDatabase extends Activity {
                 return;
             }
             retry ++;
-            int valueEuro = Integer.parseInt(editTextEuro.getText().toString());
-            int valueEuroLitre = Integer.parseInt(editTextEuroLitre.getText().toString());
-            int valueKm = Integer.parseInt(editTextKm.getText().toString());
+            double valueEuro = Double.parseDouble(editTextEuro.getText().toString());
+            double valueEuroLitre = Double.parseDouble(editTextEuroLitre.getText().toString());
+            double valueKm = Double.parseDouble(editTextKm.getText().toString());
             // on vérifie les valeurs
             if (!(valueEuro < 0 || valueEuroLitre < 0 || valueKm < 0 || valueEuro > 90 || valueEuroLitre > 3 || valueKm > 1500)){
                 // on envoi à la base de donnée
