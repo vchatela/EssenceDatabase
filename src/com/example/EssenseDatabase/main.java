@@ -1,5 +1,11 @@
 package com.example.EssenseDatabase;
 
+/**
+ * Author :Valentin Chatelard
+ * Email  :chatelar@etud.insa-toulouse.fr
+ * Website: valentindu64.ddns.net
+ **/
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +30,7 @@ import java.util.Date;
 
 import static android.view.View.*;
 
-public class EssenceDatabase extends Activity {
+public class main extends Activity {
     /**
      * Called when the activity is first created.
      */
@@ -40,7 +46,8 @@ public class EssenceDatabase extends Activity {
     String line=null;
     int code;
 
-
+    // TODO : page de login
+    // TODO : page avec résultat
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
