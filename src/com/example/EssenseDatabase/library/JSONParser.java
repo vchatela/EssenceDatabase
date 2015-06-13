@@ -61,9 +61,11 @@ public class JSONParser {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     is, "iso-8859-1"), 8);
             StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
+            String line = reader.readLine();
+            // TODO : error - line == null always
+            while (line != null) {
                 sb.append(line + "\n");
+                line = reader.readLine();
             }
             is.close();
             json = sb.toString();

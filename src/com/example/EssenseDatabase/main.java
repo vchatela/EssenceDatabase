@@ -31,9 +31,11 @@ import java.util.Date;
 import static android.view.View.*;
 
 public class main extends Activity {
+
     /**
      * Called when the activity is first created.
      */
+
     Button ValiderButton = null;
     EditText editTextKm = null;
     EditText editTextEuro = null;
@@ -46,7 +48,7 @@ public class main extends Activity {
     String line=null;
     int code;
 
-    // TODO : page de login
+    // TODO : each user have to have a personnal essenceDatabase with its vehicule
     // TODO : page avec résultat
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,8 +64,6 @@ public class main extends Activity {
         // on attribue un listener adapté aux vue
         ValiderButton.setOnClickListener(validerButton);
         // TODO : bar de progression
-        // TODO : graphisme à améliorer
-        // TODO : page accueil avec animation
 
     }
     //TODO : récupérer précédentes valeurs
@@ -141,7 +141,8 @@ public class main extends Activity {
     // méthode qui se lance lorsqu'on appuie sur le bouton meu du téléphone
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        //inflater.inflate(R.layout.menu, menu);
+        // TODO : gérer le menu :)
+        // inflater.inflate(R.layout.menu, menu);
         return true;
     }
 }

@@ -133,7 +133,7 @@ public class login extends Activity {
          **/
         @Override
         protected Boolean doInBackground(String... args){
-
+boolean test = false;
 
 
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -145,7 +145,7 @@ public class login extends Activity {
                     urlc.setConnectTimeout(3000);
                     urlc.connect();
                     if (urlc.getResponseCode() == 200) {
-                        return true;
+                        test = true;
                     }
                 } catch (MalformedURLException e1) {
                     // TODO Auto-generated catch block
@@ -155,8 +155,7 @@ public class login extends Activity {
                     e.printStackTrace();
                 }
             }
-            return false;
-
+            return test;
         }
         @Override
         protected void onPostExecute(Boolean th){
@@ -190,6 +189,7 @@ public class login extends Activity {
             inputPassword = (EditText) findViewById(R.id.pword);
             email = inputEmail.getText().toString();
             password = inputPassword.getText().toString();
+            // Boite de dialogue en plein milieux
             pDialog = new ProgressDialog(login.this);
             pDialog.setTitle("Contacting Servers");
             pDialog.setMessage("Logging in ...");
@@ -200,16 +200,16 @@ public class login extends Activity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-
             UserFunctions userFunction = new UserFunctions();
             JSONObject json = userFunction.loginUser(email, password);
+            // TODO : error - json == null
             return json;
         }
 
         @Override
         protected void onPostExecute(JSONObject json) {
             try {
-                if (json.getString(KEY_SUCCESS) != null) {
+                if (json != null && json.getString(KEY_SUCCESS) != null) {
 
                     String res = json.getString(KEY_SUCCESS);
 
@@ -240,6 +240,11 @@ public class login extends Activity {
                         pDialog.dismiss();
                         loginErrorMsg.setText("Incorrect username/password");
                     }
+                }
+                else {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Error while parsing JSON",
+                            Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -233,7 +233,7 @@ public class register extends Activity {
              * Checks for success message.
              **/
             try {
-                if (json.getString(KEY_SUCCESS) != null) {
+                if (json != null && json.getString(KEY_SUCCESS) != null) {
                     registerErrorMsg.setText("");
                     String res = json.getString(KEY_SUCCESS);
 
@@ -288,7 +288,7 @@ public class register extends Activity {
 
                 else{
                     pDialog.dismiss();
-
+// TODO : mieux gerer ca
                     registerErrorMsg.setText("Error occured in registration");
                 }
 
