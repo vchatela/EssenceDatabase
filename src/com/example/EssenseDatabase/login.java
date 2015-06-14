@@ -202,7 +202,6 @@ boolean test = false;
         protected JSONObject doInBackground(String... args) {
             UserFunctions userFunction = new UserFunctions();
             JSONObject json = userFunction.loginUser(email, password);
-            // TODO : error - json == null
             return json;
         }
 
@@ -243,7 +242,9 @@ boolean test = false;
                 }
                 else {
                     pDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Error while parsing JSON",
+                    if(json == null)
+                        // TODO : vérifier que c'est pas une erreur du serveur
+                    Toast.makeText(getApplicationContext(), "Error during Json treatment",
                             Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
