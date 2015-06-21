@@ -13,7 +13,7 @@
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_gravity="center_horizontal"
-            android:id="@+id/central" android:rowCount="74" android:columnCount="13"
+            android:id="@+id/central" android:rowCount="75" android:columnCount="13"
             >
         <TextView
                 android:layout_width="wrap_content"
@@ -58,11 +58,22 @@
                 android:layout_width="176dp"
                 android:layout_height="81dp"
                 android:text="@string/okButton"
-                android:id="@+id/okButton" android:layout_row="73" android:layout_column="0"
-                android:layout_gravity="center_horizontal" android:layout_columnSpan="13"
+                android:id="@+id/okButton" android:layout_row="74" android:layout_column="0"
+                android:layout_columnSpan="13"
                 android:clickable="false"
                 android:background="?android:attr/selectableItemBackground"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:layout_gravity="right"/>
+
+        <Button
+                android:layout_width="176dp"
+                android:layout_height="81dp"
+                android:text="Retour"
+                android:id="@+id/buttonRetour"
+                android:layout_row="74"
+                android:layout_column="12"
+                android:layout_gravity="left"
+                android:background="?android:attr/selectableItemBackground"/>
     </GridLayout>
 </LinearLayout>
 

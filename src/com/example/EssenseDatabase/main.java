@@ -7,6 +7,7 @@ package com.example.EssenseDatabase;
  **/
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -37,6 +38,7 @@ public class main extends Activity {
      */
 
     Button ValiderButton = null;
+    Button btnRetour = null;
     EditText editTextKm = null;
     EditText editTextEuro = null;
     EditText editTextEuroLitre = null;
@@ -56,6 +58,7 @@ public class main extends Activity {
         setContentView(R.layout.main);
         // récupération des vues
         ValiderButton = (Button) findViewById(R.id.okButton);
+        btnRetour = (Button) findViewById(R.id.buttonRetour);
         editTextEuro = (EditText) findViewById(R.id.editTextEuro);
         editTextEuroLitre = (EditText) findViewById(R.id.editTextEuroLitre);
         editTextResult = (EditText) findViewById(R.id.editTextResult);
@@ -64,6 +67,13 @@ public class main extends Activity {
         // on attribue un listener adapté aux vue
         ValiderButton.setOnClickListener(validerButton);
         // TODO : bar de progression
+
+        btnRetour.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), login.class);
+                startActivityForResult(myIntent, 0);
+                finish();
+            }});
 
     }
     //TODO : récupérer précédentes valeurs
@@ -103,6 +113,7 @@ public class main extends Activity {
 
         }
     };
+
     public boolean insert() throws InterruptedException {
         Date date = new Date();
         DateFormat dateformat= new SimpleDateFormat("yyyy-MM-dd");
@@ -122,8 +133,7 @@ public class main extends Activity {
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
                             "&Distance="+editTextKm.getText().toString()+"&PrixLitre="+editTextEuroLitre.getText().toString()+"&Date="+dateString);
-                    // TODO : retirer pour éxécuter
-                    // httpclient.execute(httppost);
+                    httpclient.execute(httppost);
                     Log.e("pass 1", "connection success ");
                 }
                 catch(Exception e)

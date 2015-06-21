@@ -31,10 +31,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class login extends Activity {
+// TODO : message  allumer réseau !
+    // TODO : gestion de la coupure du réseau
 
     Button btnLogin;
     Button Btnregister;
     Button passreset;
+    Button btnDebug;
     EditText inputEmail;
     EditText inputPassword;
     private TextView loginErrorMsg;
@@ -62,6 +65,7 @@ public class login extends Activity {
         btnLogin = (Button) findViewById(R.id.login);
         passreset = (Button)findViewById(R.id.passres);
         loginErrorMsg = (TextView) findViewById(R.id.loginErrorMsg);
+        btnDebug = (Button) findViewById(R.id.buttonDebug);
 
         passreset.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -70,6 +74,12 @@ public class login extends Activity {
                 finish();
             }});
 
+        btnDebug.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), main.class);
+                startActivityForResult(myIntent, 0);
+                finish();
+            }});
 
         Btnregister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
