@@ -50,7 +50,7 @@ public class main extends Activity {
     String line=null;
     int code;
 
-    // TODO : each user have to have a personnal essenceDatabase with its vehicule
+    // TODO : each user have to have a personnal essenceDatabase with his vehicule
     // TODO : page avec résultat
     @Override
     public void onCreate(Bundle savedInstanceState) {

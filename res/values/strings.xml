@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Essense Database</string>
     <string name="okButton">Valider</string>
+    <string name="logo">Logo</string>
 </resources>
