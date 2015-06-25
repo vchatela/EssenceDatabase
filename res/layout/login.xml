@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:text="Welcome to EssenceDatabase"
-            android:id="@+id/textView"
+            android:id="@+id/textViewEssenceMoyenPlein"
             android:textSize="18dp"
             android:textColor="#000000"
             android:textAlignment="center"

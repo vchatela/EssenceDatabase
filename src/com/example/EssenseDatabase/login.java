@@ -131,6 +131,7 @@ public class login extends Activity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
+            //Boite de dialogue
             nDialog = new ProgressDialog(login.this);
             nDialog.setTitle("Checking Network");
             nDialog.setMessage("Loading..");
@@ -143,9 +144,7 @@ public class login extends Activity {
          **/
         @Override
         protected Boolean doInBackground(String... args){
-boolean test = false;
-
-
+            boolean test = false;
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
             if (netInfo != null && netInfo.isConnected()) {

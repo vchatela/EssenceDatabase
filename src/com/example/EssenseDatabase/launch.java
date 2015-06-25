@@ -40,7 +40,8 @@ public class launch extends Activity{
         // On va vérifier le réseau puis login si ok
         new NetCheck().execute();
         // maintenant une fois le thread terminé on vérifie le résultat et on lance le bon
-        // TODO : goLogin();
+        //TODO : on lance la page suivante ...
+
     }
 
     private class NetCheck extends AsyncTask<String,String,Boolean>
@@ -88,8 +89,6 @@ public class launch extends Activity{
                 p.setVisibility(View.INVISIBLE);
                 textOk.setText("Connecté");
                 textOk.setGravity(Gravity.CENTER);
-                //TODO : on lance la page suivante ...
-
             }
             else{
                 // sinon a error Connection

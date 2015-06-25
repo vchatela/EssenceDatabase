@@ -7,6 +7,8 @@ package com.example.EssenseDatabase;
  **/
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,15 +18,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,7 +34,10 @@ public class main extends Activity {
     /**
      * Called when the activity is first created.
      */
-
+    double saveEuro = -1;
+    double saveEuroLitre = -1;
+    double saveKm = -1;
+    boolean envoi = true;
     Button ValiderButton = null;
     Button btnRetour = null;
     EditText editTextKm = null;
@@ -44,6 +45,8 @@ public class main extends Activity {
     EditText editTextEuroLitre = null;
     EditText editTextResult = null;
     int retry = 0;
+
+    AlertDialog.Builder builder;
 
     InputStream is=null;
     String result=null;
@@ -75,12 +78,36 @@ public class main extends Activity {
                 finish();
             }});
 
+        builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Are you sure?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                envoi = true;
+                dialog.dismiss();
+            }
+
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                envoi = false;
+                dialog.dismiss();
+            }
+        });
+
+
+
     }
-    //TODO : récupérer précédentes valeurs
-    //TODO :  reset des valeurs après envois
     //TODO : nouvelle activité : résultat de la database (moyenne etc)
     private OnClickListener validerButton = new OnClickListener() {
-        // TODO : vérifier changement des valeurs si reclique alors que valeur déjà dans la base de donnée
         @Override
         public void onClick(View v){
             // Ici on vérifie les valeurs avant d'envoyer à la database
@@ -89,21 +116,38 @@ public class main extends Activity {
                         Toast.LENGTH_LONG).show();
                 return;
             }
+            envoi = true;
             retry ++;
             double valueEuro = Double.parseDouble(editTextEuro.getText().toString());
             double valueEuroLitre = Double.parseDouble(editTextEuroLitre.getText().toString());
             double valueKm = Double.parseDouble(editTextKm.getText().toString());
             // on vérifie les valeurs
             if (!(valueEuro < 0 || valueEuroLitre < 0 || valueKm < 0 || valueEuro > 90 || valueEuroLitre > 3 || valueKm > 1500)){
+                // si c'est les memes valeurs on vérifie que l'utilisateur veut les renvoyers
+                if (saveEuroLitre == valueEuroLitre && saveEuro == valueEuro && saveKm == valueKm){
+                    // On demande si l'utilisateur veut les renvoyer
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
                 // on envoi à la base de donnée
-                editTextResult.setText("Connexion... ("+ retry +")");
-                try {
-                    if (insert()){
-                        editTextResult.setText("Envoi effectué !");
-                        retry = 0;
+                if(envoi) {
+                    editTextResult.setText("Connexion... (" + retry + ")");
+                    try {
+                        if (insert()) {
+                            editTextResult.setText("Envoi effectué !");
+                            retry = 0;
+                            saveEuro = valueEuro;
+                            saveEuroLitre = valueEuroLitre;
+                            saveKm = valueKm;
+                            editTextEuro.setText("");
+                            editTextEuroLitre.setText("");
+                            editTextKm.setText("");
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
             else {

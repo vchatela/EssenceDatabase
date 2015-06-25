@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="€/Litre"
-                android:id="@+id/textView" android:layout_row="68" android:layout_column="12"
+                android:id="@+id/textViewEssenceMoyenPlein" android:layout_row="68" android:layout_column="12"
                 />
         <EditText
                 android:layout_width="match_parent"

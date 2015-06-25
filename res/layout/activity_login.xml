@@ -8,7 +8,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome to EssenceDatabase"
-            android:id="@+id/textView" android:layout_gravity="center"
+            android:id="@+id/textViewEssenceMoyenPlein" android:layout_gravity="center"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textColor="#000000"/>
@@ -17,7 +17,7 @@
             android:layout_height="40dp"
             android:hint="E-mail"
             android:id="@+id/email"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/textViewEssenceMoyenPlein"
             android:layout_alignParentRight="true"
             android:textSize="15dp"
             android:textColor="#000000"/>
@@ -56,7 +56,7 @@
             android:text="Email"
             android:id="@+id/textView2"
             android:layout_alignTop="@+id/email"
-            android:layout_toLeftOf="@+id/textView"
+            android:layout_toLeftOf="@+id/textViewEssenceMoyenPlein"
             android:textSize="15dp"
             android:textColor="#000000"/>
 

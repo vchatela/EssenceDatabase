@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:id="@+id/parent"
+              android:background="@drawable/android">
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome, to EssenceDatabase"
+            android:id="@+id/textCentral"/>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/RelativeLayout">
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Kilométrage"
+                android:id="@+id/textView12"
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="false"
+                android:gravity="center_horizontal"/>
+
+        <TextView
+                android:layout_width="250dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Kilométrage Moyen / Plein"
+                android:id="@+id/textView16"
+                android:layout_column="0"
+                android:textSize="15dp"
+                android:layout_below="@+id/textView12"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="29dp"/>
+
+        <TextView
+                android:layout_width="250dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Kilométrage Dernier Plein"
+                android:id="@+id/textView14"
+                android:layout_column="0"
+                android:textIsSelectable="false"
+                android:textSize="15dp"
+                android:layout_below="@+id/textView16"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/textView16"/>
+
+        <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewKmMoyen"
+                android:layout_alignTop="@+id/textView16"
+                android:layout_alignParentEnd="true"/>
+
+        <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewKmDernier"
+                android:layout_below="@+id/textView16"
+                android:layout_alignParentEnd="true"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Essence"
+                android:id="@+id/textView13"
+                android:layout_below="@+id/textView14"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="31dp"/>
+
+        <TextView
+                android:layout_width="250dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Essence Moyen / Plein"
+                android:id="@+id/textView15"
+                android:layout_below="@+id/textView13"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="23dp"
+                android:textSize="15dp"/>
+
+        <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewEssenceMoyenPlein"
+                android:layout_alignBottom="@+id/textView15"
+                android:layout_alignParentEnd="true"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Prix"
+                android:id="@+id/textView17"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+
+        <Button
+                android:layout_width="180dp"
+                android:layout_height="65dp"
+                android:id="@+id/buttonRetour"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:layout_gravity="left"
+                android:background="?android:attr/selectableItemBackground"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Retour"
+                android:id="@+id/textView18"
+                android:layout_alignBaseline="@+id/buttonRetour"
+                android:layout_alignBottom="@+id/buttonRetour"
+                android:layout_toStartOf="@+id/textView13"
+                android:layout_marginEnd="38dp"/>
+
+        <TextView
+                android:layout_width="250dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Essence Dernier Plein"
+                android:id="@+id/textView19"
+                android:textSize="15dp"
+                android:layout_below="@+id/textView15"
+                android:layout_alignParentStart="true"/>
+
+        <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewEssenceDernierPlein"
+                android:layout_below="@+id/textViewEssenceMoyenPlein"
+                android:layout_alignStart="@+id/textViewEssenceMoyenPlein"/>
+
+        <TextView
+                android:layout_width="250dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Prix / Plein  moyen"
+                android:id="@+id/textView"
+                android:textSize="15dp"
+                android:layout_below="@+id/textView17"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="21dp"/>
+
+        <TextView
+                android:layout_width="250dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Prix / Plein (Dernier)"
+                android:id="@+id/textView20"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp"/>
+
+        <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewPrixMoyen"
+                android:layout_alignTop="@+id/textView"
+                android:layout_alignParentEnd="true"/>
+
+        <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewPrix"
+                android:layout_alignBottom="@+id/textView20"
+                android:layout_alignParentEnd="true"/>
+
+        <Button
+                android:layout_width="180dp"
+                android:layout_height="65dp"
+                android:id="@+id/buttonRafraichir"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_vertical"
+                android:layout_gravity="left"
+                android:background="?android:attr/selectableItemBackground"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Rafraichir"
+                android:id="@+id/textView21"
+                android:layout_alignBaseline="@+id/buttonRafraichir"
+                android:layout_alignBottom="@+id/buttonRafraichir"
+                android:layout_toEndOf="@+id/textView20"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
+
