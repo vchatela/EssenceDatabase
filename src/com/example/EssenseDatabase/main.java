@@ -162,13 +162,8 @@ public class main extends Activity {
         Date date = new Date();
         DateFormat dateformat= new SimpleDateFormat("yyyy-MM-dd");
         String dateString = dateformat.format(date);
-/*
-        ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
-        nameValuePairs.add(new BasicNameValuePair("Prix",editTextEuro.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("Distance",editTextKm.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("PrixLitre",editTextEuroLitre.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("Date",dateString));
-*/      new Thread(new Runnable() {
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try
