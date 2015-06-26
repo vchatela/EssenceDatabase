@@ -22,10 +22,11 @@
                 android:text="Kilométrage"
                 android:id="@+id/textViewKm" android:layout_row="3" android:layout_column="12"/>
         <EditText
-                android:layout_width="382dp"
-                android:layout_height="61dp"
+                android:layout_width="380dp"
+                android:layout_height="65dp"
                 android:id="@+id/editTextKm" android:layout_row="53" android:layout_column="12"
-                android:inputType="number|numberDecimal"/>
+                android:inputType="number|numberDecimal"
+                android:editable="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,10 +34,12 @@
                 android:text="Euros"
                 android:id="@+id/textViewEuro" android:layout_row="58" android:layout_column="12"/>
         <EditText
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_width="380dp"
+                android:layout_height="65dp"
                 android:id="@+id/editTextEuro" android:layout_row="65" android:layout_column="12"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:editable="true"
+                android:autoText="false"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,10 +48,11 @@
                 android:id="@+id/textViewEssenceMoyenPlein" android:layout_row="68" android:layout_column="12"
                 />
         <EditText
-                android:layout_width="match_parent"
+                android:layout_width="380dp"
                 android:layout_height="65dp"
                 android:id="@+id/editTextEuroLitre" android:layout_row="69" android:layout_column="12"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:editable="true"/>
         <EditText
                 android:layout_width="250dp"
                 android:layout_height="58dp"
@@ -73,7 +77,8 @@
                 android:layout_row="74"
                 android:layout_column="12"
                 android:layout_gravity="left"
-                android:background="?android:attr/selectableItemBackground"/>
+                android:background="?android:attr/selectableItemBackground"
+                android:textSize="20dp"/>
     </GridLayout>
 </LinearLayout>
 

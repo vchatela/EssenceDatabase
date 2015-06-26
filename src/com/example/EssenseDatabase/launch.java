@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -19,6 +21,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static android.text.format.DateFormat.getBestDateTimePattern;
 
@@ -26,10 +33,12 @@ import static android.text.format.DateFormat.getBestDateTimePattern;
  * Created by valentin on 24/06/15.
  */
 public class launch extends Activity{
-
+    public int semaphore=1;
+    public boolean thread= false;
     public TextView textOk;
     public ProgressBar p;
     public TextClock t;
+    public AsyncTask<String,String,Boolean> sync;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,10 +47,47 @@ public class launch extends Activity{
         // TODO : format 24h
         setContentView(R.layout.launch);
         // On va vérifier le réseau puis login si ok
-        new NetCheck().execute();
-        // maintenant une fois le thread terminé on vérifie le résultat et on lance le bon
-        //TODO : on lance la page suivante ...
+        sync = new NetCheck().execute();
 
+        // maintenant une fois le thread terminé on vérifie le résultat et on lance le bon
+
+        //TODO : ca serait bien de faire via un thread
+         try {
+             sync.get(2000, TimeUnit.MILLISECONDS);
+         }
+        catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+             e.printStackTrace();
+         } catch (TimeoutException e) {
+             e.printStackTrace();
+         }
+        Log.d("DEBUG", sync.getStatus().toString());
+
+        //while(semaphore==0){}
+
+        if (thread){
+            p = (ProgressBar) findViewById(R.id.progressBar);
+            p.setVisibility(View.INVISIBLE);
+            new Thread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    try
+                    {
+                        Thread.sleep(3000);
+                        Intent i = new Intent(getApplicationContext(), login.class);
+                        startActivity(i);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
     }
 
     private class NetCheck extends AsyncTask<String,String,Boolean>
@@ -50,6 +96,7 @@ public class launch extends Activity{
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
+            semaphore =0;
         }
         /**
          * Gets current device state and checks for working internet connection by trying Google.
@@ -78,15 +125,18 @@ public class launch extends Activity{
                     e.printStackTrace();
                 }
             }
+            semaphore=1;
+            if (test)
+                thread = true;
+            else
+                thread = false;
             return test;
         }
         @Override
         protected void onPostExecute(Boolean th){
             textOk = (TextView) findViewById(R.id.textOk);
-            p = (ProgressBar) findViewById(R.id.progressBar);
             if(th == true){
                 // on met le message vérification à OK
-                p.setVisibility(View.INVISIBLE);
                 textOk.setText("Connecté");
                 textOk.setGravity(Gravity.CENTER);
             }
@@ -97,10 +147,5 @@ public class launch extends Activity{
                 textOk.setGravity(Gravity.CENTER);
             }
         }
-    }
-    public void goLogin(View view){
-        Intent myIntent = new Intent(view.getContext(), passwordReset.class);
-        startActivityForResult(myIntent, 0);
-        finish();
     }
 }
