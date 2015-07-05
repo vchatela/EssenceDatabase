@@ -19,19 +19,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Kilométrage"
+                android:text="@string/kilometrage"
                 android:id="@+id/textViewKm" android:layout_row="3" android:layout_column="12"/>
         <EditText
                 android:layout_width="380dp"
                 android:layout_height="65dp"
                 android:id="@+id/editTextKm" android:layout_row="53" android:layout_column="12"
                 android:inputType="number|numberDecimal"
-                android:editable="true"/>
+                android:editable="true"
+                android:background="@android:color/transparent"
+                android:enabled="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Euros"
+                android:text="@string/money"
                 android:id="@+id/textViewEuro" android:layout_row="58" android:layout_column="12"/>
         <EditText
                 android:layout_width="380dp"
@@ -39,12 +41,14 @@
                 android:id="@+id/editTextEuro" android:layout_row="65" android:layout_column="12"
                 android:inputType="numberDecimal"
                 android:editable="true"
-                android:autoText="false"/>
+                android:autoText="false"
+                android:background="@android:color/transparent"
+                android:enabled="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="€/Litre"
+                android:text="@string/moneymoyenplein"
                 android:id="@+id/textViewEssenceMoyenPlein" android:layout_row="68" android:layout_column="12"
                 />
         <EditText
@@ -52,12 +56,10 @@
                 android:layout_height="65dp"
                 android:id="@+id/editTextEuroLitre" android:layout_row="69" android:layout_column="12"
                 android:inputType="numberDecimal"
-                android:editable="true"/>
-        <EditText
-                android:layout_width="250dp"
-                android:layout_height="58dp"
-                android:id="@+id/editTextResult" android:layout_row="72" android:layout_column="12"
-                android:layout_gravity="center_horizontal" android:autoText="false" android:inputType="none"/>
+                android:editable="true"
+                android:background="@android:color/transparent"
+                android:enabled="true"/>
+
         <Button
                 android:layout_width="176dp"
                 android:layout_height="81dp"
@@ -66,19 +68,19 @@
                 android:layout_columnSpan="13"
                 android:clickable="false"
                 android:background="?android:attr/selectableItemBackground"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:layout_gravity="right"/>
 
         <Button
                 android:layout_width="176dp"
                 android:layout_height="81dp"
-                android:text="Retour"
+                android:text="@string/retour"
                 android:id="@+id/buttonRetour"
                 android:layout_row="74"
                 android:layout_column="12"
                 android:layout_gravity="left"
                 android:background="?android:attr/selectableItemBackground"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
     </GridLayout>
 </LinearLayout>
 

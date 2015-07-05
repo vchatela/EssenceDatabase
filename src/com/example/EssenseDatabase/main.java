@@ -48,7 +48,6 @@ public class main extends Activity {
     EditText editTextKm = null;
     EditText editTextEuro = null;
     EditText editTextEuroLitre = null;
-    EditText editTextResult = null;
     int retry = 0;
 
     AlertDialog.Builder builder;
@@ -69,9 +68,7 @@ public class main extends Activity {
         btnRetour = (Button) findViewById(R.id.buttonRetour);
         editTextEuro = (EditText) findViewById(R.id.editTextEuro);
         editTextEuroLitre = (EditText) findViewById(R.id.editTextEuroLitre);
-        editTextResult = (EditText) findViewById(R.id.editTextResult);
         editTextKm = (EditText) findViewById(R.id.editTextKm);
-        editTextResult.setEnabled(false);
         // on attribue un listener adapté aux vue
         ValiderButton.setOnClickListener(validerButton);
         // TODO : bar de progression
@@ -156,7 +153,6 @@ public class main extends Activity {
     private OnClickListener validerButton = new OnClickListener() {
         @Override
         public void onClick(View v){
-            editTextResult.setText("");
             // Ici on vérifie les valeurs avant d'envoyer à la database
             if (editTextEuro.getText().length() == 0 || editTextEuroLitre.getText().length() == 0 || editTextKm.getText().length() == 0){
                 Toast.makeText(getApplicationContext(), "Valeurs non correctes",
@@ -180,10 +176,12 @@ public class main extends Activity {
                 }
                 // on envoi à la base de donnée
                 if(envoi) {
-                    editTextResult.setText("Connexion... (" + retry + ")");
+                    Toast.makeText(getApplicationContext(), "Connexion... (" + retry + ")",
+                        Toast.LENGTH_LONG).show();
                     try {
                         if (insert()) {
-                            editTextResult.setText("Envoi effectué !");
+                            Toast.makeText(getApplicationContext(), "Envoi effectué !",
+                                    Toast.LENGTH_LONG).show();
                             retry = 0;
                             saveEuro = valueEuro;
                             saveEuroLitre = valueEuroLitre;

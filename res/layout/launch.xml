@@ -13,7 +13,7 @@
             android:layout_height="150dp"
             android:id="@+id/imageView"
             android:src="@drawable/data31"
-            android:contentDescription="logo"
+            android:contentDescription="@string/data"
             android:scaleType="fitXY"
 
             android:layout_marginTop="76dp"
@@ -24,10 +24,10 @@
             android:layout_width="240dp"
             android:layout_height="80dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Bienvenue"
+            android:text="@string/welcome"
             android:id="@+id/textView8"
             android:autoText="false"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="44dp"/>
@@ -54,7 +54,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Vérification du réseau ..."
+            android:text="@string/test_network"
             android:id="@+id/textOk"
             android:layout_below="@+id/progressBar"
             android:layout_alignStart="@+id/imageView"
@@ -67,9 +67,20 @@
             android:layout_width="120dp"
             android:layout_height="30dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Version 1.1"
+            android:text="@string/version"
             android:id="@+id/textView10"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"/>
+
+    <Button
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="@string/buttonRafraichir"
+            android:id="@+id/but"
+            android:layout_alignBottom="@+id/textClock"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:textColor="#ffffffff"
+            android:visibility="invisible"/>
 </RelativeLayout>

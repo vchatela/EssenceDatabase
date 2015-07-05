@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -41,31 +42,33 @@ public class launch extends Activity{
     public ProgressBar p;
     public TextClock t;
     public AsyncTask<String,String,Boolean> sync;
+    public Button but;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        t= (TextClock) findViewById(R.id.textClock);
-        // TODO : format 24h
-        setContentView(R.layout.launch);
+    public void testNetwork(){
         // On va vérifier le réseau puis login si ok
         sync = new NetCheck().execute();
 
         // maintenant une fois le thread terminé on vérifie le résultat et on lance le bon
 
-         try {
-             sync.get(2000, TimeUnit.MILLISECONDS);
-         }
+        try {
+            sync.get(1200, TimeUnit.MILLISECONDS);
+        }
         catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-             e.printStackTrace();
-         } catch (TimeoutException e) {
-             e.printStackTrace();
-         }
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
         Log.d("DEBUG", sync.getStatus().toString());
+        thread = true;
+    }
 
+    public void activity_next(){
         if (thread) {
+            but.setVisibility(View.INVISIBLE);
+            but.setEnabled(false);
+
             p = (ProgressBar) findViewById(R.id.progressBar);
             p.setVisibility(View.INVISIBLE);
             new Thread(new Runnable() {
@@ -84,8 +87,38 @@ public class launch extends Activity{
             }).start();
         }
         else{
+            but.setVisibility(View.VISIBLE);
+            but.setEnabled(true);
             // TODO : on propose à l'utilisateur d'allumer si éteins (uniquement si éteins)
         }
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.launch);
+
+        t= (TextClock) findViewById(R.id.textClock);
+        but = (Button) findViewById(R.id.but);
+
+
+
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testNetwork();
+                activity_next();
+            }
+        });
+
+
+        but.setVisibility(View.INVISIBLE);
+        but.setEnabled(false);
+
+        // TODO : format 24h
+
+        // on test le réseau
+        testNetwork();
+        activity_next();
     }
 
     private class NetCheck extends AsyncTask<String,String,Boolean>
@@ -122,10 +155,7 @@ public class launch extends Activity{
                 }
             }
             semaphore=1;
-            if (test)
-                thread = true;
-            else
-                thread = false;
+            thread = test;
             return test;
         }
         @Override
