@@ -10,7 +10,8 @@
             android:layout_height="wrap_content"
             android:text="Welcome, to EssenceDatabase"
             android:id="@+id/textCentral"/>
-    <GridLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_gravity="center_horizontal"
             android:id="@+id/central" android:rowCount="75" android:columnCount="13"
@@ -20,45 +21,67 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/kilometrage"
-                android:id="@+id/textViewKm" android:layout_row="3" android:layout_column="12"/>
+                android:id="@+id/textViewKm"
+                android:layout_row="3"
+                android:layout_column="12"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"/>
         <EditText
-                android:layout_width="380dp"
+                android:layout_width="250dp"
                 android:layout_height="65dp"
                 android:id="@+id/editTextKm" android:layout_row="53" android:layout_column="12"
                 android:inputType="number|numberDecimal"
                 android:editable="true"
                 android:background="@android:color/transparent"
-                android:enabled="true"/>
+                android:enabled="true"
+                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/textViewKm"
+                android:layout_centerHorizontal="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/money"
-                android:id="@+id/textViewEuro" android:layout_row="58" android:layout_column="12"/>
+                android:id="@+id/textViewEuro"
+                android:layout_row="58"
+                android:layout_column="12"
+                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/editTextKm"
+                android:layout_alignStart="@+id/textViewKm"/>
         <EditText
-                android:layout_width="380dp"
+                android:layout_width="250dp"
                 android:layout_height="65dp"
                 android:id="@+id/editTextEuro" android:layout_row="65" android:layout_column="12"
                 android:inputType="numberDecimal"
                 android:editable="true"
                 android:autoText="false"
                 android:background="@android:color/transparent"
-                android:enabled="true"/>
+                android:enabled="true"
+                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/textViewEuro"
+                android:layout_centerHorizontal="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/moneymoyenplein"
                 android:id="@+id/textViewEssenceMoyenPlein" android:layout_row="68" android:layout_column="12"
-                />
+                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/editTextEuro"
+                android:layout_alignParentStart="true"/>
         <EditText
-                android:layout_width="380dp"
+                android:layout_width="250dp"
                 android:layout_height="65dp"
                 android:id="@+id/editTextEuroLitre" android:layout_row="69" android:layout_column="12"
                 android:inputType="numberDecimal"
                 android:editable="true"
                 android:background="@android:color/transparent"
-                android:enabled="true"/>
+                android:enabled="true"
+                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/textViewEssenceMoyenPlein"
+                android:layout_centerHorizontal="true"/>
 
         <Button
                 android:layout_width="176dp"
@@ -69,7 +92,10 @@
                 android:clickable="false"
                 android:background="?android:attr/selectableItemBackground"
                 android:textSize="20sp"
-                android:layout_gravity="right"/>
+                android:layout_gravity="right"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"/>
 
         <Button
                 android:layout_width="176dp"
@@ -80,7 +106,21 @@
                 android:layout_column="12"
                 android:layout_gravity="left"
                 android:background="?android:attr/selectableItemBackground"
-                android:textSize="20sp"/>
-    </GridLayout>
+                android:textSize="20sp"
+                android:layout_marginLeft="0dp"
+                android:layout_alignTop="@+id/okButton"
+                android:layout_alignParentStart="true"
+                />
+
+                <Button
+                        android:layout_width="210dp"
+                        android:layout_height="50dp"
+                        android:text="Voir les résultats"
+                        android:id="@+id/buttonResultats"
+                        android:layout_marginTop="56dp"
+                        android:background="@android:color/transparent"
+                        android:layout_below="@+id/editTextEuroLitre"
+                        android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
 </LinearLayout>
 
