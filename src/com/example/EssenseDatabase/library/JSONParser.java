@@ -60,7 +60,6 @@ public class JSONParser {
             String serverResponse = httpResponse.getStatusLine().toString();
             // Internal Server Error
             Log.e("Status reponse", serverResponse);
-// TODO : gestion d'erreur
             if (serverResponse.equals("HTTP/1.0 500 Internal Server Error")){
                 return jObj;
             }

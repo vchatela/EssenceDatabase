@@ -109,10 +109,8 @@ public class changePassword extends Activity {
                         return true;
                     }
                 } catch (MalformedURLException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }

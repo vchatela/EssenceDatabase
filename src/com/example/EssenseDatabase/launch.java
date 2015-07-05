@@ -32,6 +32,8 @@ import static android.text.format.DateFormat.getBestDateTimePattern;
 /**
  * Created by valentin on 24/06/15.
  */
+
+// TODO : add retry button to restart testing connexion
 public class launch extends Activity{
     public int semaphore=1;
     public boolean thread= false;
@@ -51,7 +53,6 @@ public class launch extends Activity{
 
         // maintenant une fois le thread terminé on vérifie le résultat et on lance le bon
 
-        //TODO : ca serait bien de faire via un thread
          try {
              sync.get(2000, TimeUnit.MILLISECONDS);
          }
@@ -64,29 +65,26 @@ public class launch extends Activity{
          }
         Log.d("DEBUG", sync.getStatus().toString());
 
-        //while(semaphore==0){}
-
-        if (thread){
+        if (thread) {
             p = (ProgressBar) findViewById(R.id.progressBar);
             p.setVisibility(View.INVISIBLE);
-            new Thread(new Runnable()
-            {
+            new Thread(new Runnable() {
                 @Override
-                public void run()
-                {
-                    try
-                    {
+                public void run() {
+                    try {
                         Thread.sleep(3000);
                         Intent i = new Intent(getApplicationContext(), login.class);
                         startActivity(i);
-                    }
-                    catch (InterruptedException e)
-                    {
-                        // TODO Auto-generated catch block
+                        //launch.this.finish();
+                        finish();
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }).start();
+        }
+        else{
+            // TODO : on propose à l'utilisateur d'allumer si éteins (uniquement si éteins)
         }
     }
 
@@ -118,10 +116,8 @@ public class launch extends Activity{
                         test = true;
                     }
                 } catch (MalformedURLException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -139,9 +135,12 @@ public class launch extends Activity{
                 // on met le message vérification à OK
                 textOk.setText("Connecté");
                 textOk.setGravity(Gravity.CENTER);
+                p = (ProgressBar) findViewById(R.id.progressBar);
+                p.setVisibility(View.INVISIBLE);
             }
             else{
                 // sinon a error Connection
+                p = (ProgressBar) findViewById(R.id.progressBar);
                 p.setVisibility(View.INVISIBLE);
                 textOk.setText("Error in Network Connection");
                 textOk.setGravity(Gravity.CENTER);

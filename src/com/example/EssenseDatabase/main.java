@@ -8,9 +8,13 @@ package com.example.EssenseDatabase;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,10 +38,11 @@ public class main extends Activity {
     /**
      * Called when the activity is first created.
      */
+    AlertDialog.Builder   alert;
     double saveEuro = -1;
     double saveEuroLitre = -1;
     double saveKm = -1;
-    boolean envoi = true;
+    boolean envoi;
     Button ValiderButton = null;
     Button btnRetour = null;
     EditText editTextKm = null;
@@ -106,10 +111,52 @@ public class main extends Activity {
 
 
     }
-    //TODO : nouvelle activité : résultat de la database (moyenne etc)
+    public void getYesNoWithExecutionStop(String title, String message) {
+        // make a handler that throws a runtime exception when a message is received
+        final Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message mesg) {
+                throw new RuntimeException();
+            }
+        };
+
+
+        // make a text input dialog and show it
+        alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(message);
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                envoi = true;
+                handler.sendMessage(handler.obtainMessage());
+            }
+        });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                envoi = false;
+                handler.sendMessage(handler.obtainMessage());
+            }
+        });
+        alert.show();
+
+        /*alert = builder.create();
+        builder.setTitle("Attention !");
+        builder.setMessage("Voulez vous renvoyer les mêmes valeurs ?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Oui", new OkOnClickListener());
+        builder.setNegativeButton("Non", new NotOkOnClickListener());
+        alert.show();*/
+        // loop till a runtime exception is triggered.
+        try { Looper.loop(); }
+        catch(RuntimeException e2) {}
+
+    }
+
+    //TODO : gestion de la nouvelle activité : résultat de la database (moyenne etc)
     private OnClickListener validerButton = new OnClickListener() {
         @Override
         public void onClick(View v){
+            editTextResult.setText("");
             // Ici on vérifie les valeurs avant d'envoyer à la database
             if (editTextEuro.getText().length() == 0 || editTextEuroLitre.getText().length() == 0 || editTextKm.getText().length() == 0){
                 Toast.makeText(getApplicationContext(), "Valeurs non correctes",
@@ -127,8 +174,8 @@ public class main extends Activity {
                 if (saveEuroLitre == valueEuroLitre && saveEuro == valueEuro && saveKm == valueKm){
                     // On demande si l'utilisateur veut les renvoyer
 
-                    AlertDialog alert = builder.create();
-                    alert.show();
+
+                    getYesNoWithExecutionStop("Attention !","Voulez vous renvoyer les mêmes valeurs ?");
 
                 }
                 // on envoi à la base de donnée
@@ -158,6 +205,20 @@ public class main extends Activity {
         }
     };
 
+    /*private final class OkOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+            envoi = true;
+            alert.dismiss();
+        }
+    };
+    private final class NotOkOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+            envoi = false;
+            alert.dismiss();
+        }
+    }*/
     public boolean insert() throws InterruptedException {
         Date date = new Date();
         DateFormat dateformat= new SimpleDateFormat("yyyy-MM-dd");
@@ -172,7 +233,7 @@ public class main extends Activity {
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
                             "&Distance="+editTextKm.getText().toString()+"&PrixLitre="+editTextEuroLitre.getText().toString()+"&Date="+dateString);
-                    httpclient.execute(httppost);
+                   // httpclient.execute(httppost);
                     Log.e("pass 1", "connection success ");
                 }
                 catch(Exception e)

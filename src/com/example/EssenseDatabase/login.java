@@ -31,8 +31,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class login extends Activity {
-// TODO : message  allumer réseau !
+    // TODO : message  allumer réseau !
     // TODO : gestion de la coupure du réseau
+    //TODO : empecher retour sur la page launch !
+    // TODO : retour signifiant -> quitter !
 
     Button btnLogin;
     Button Btnregister;
@@ -157,10 +159,8 @@ public class login extends Activity {
                         test = true;
                     }
                 } catch (MalformedURLException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
