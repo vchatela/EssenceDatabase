@@ -5,3 +5,4 @@ android:
     # use the latest revision of Android SDK Tools
     # - platform-tools
     # - tools
+    - android-19
