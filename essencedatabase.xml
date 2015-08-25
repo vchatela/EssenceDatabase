@@ -69,11 +69,11 @@
     <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
   </path>
   <target name="register.custom.compilers">
-    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
-    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
-  </target>
-  
-  <!-- Modules -->
+  <!-- <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>-->
+  <!-- <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>-->
+</target>
+
+<!-- Modules -->
   
   
   <!-- Module EssenceDatabase -->
@@ -127,15 +127,15 @@
   
   <target name="compile.module.essencedatabase" depends="compile.module.essencedatabase.production,compile.module.essencedatabase.tests" description="Compile module EssenceDatabase"/>
   
-  <target name="compile.module.essencedatabase.production" depends="" description="Compile module EssenceDatabase; production classes">
+  <target name="compile.module.essencedatabase.production" depends="register.custom.compilers" description="Compile module EssenceDatabase; production classes">
     <mkdir dir="${essencedatabase.output.dir}"/>
-    <javac2 destdir="${essencedatabase.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.essencedatabase}/javac">
+    <javac destdir="${essencedatabase.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.essencedatabase}/javac">
       <compilerarg line="${compiler.args.essencedatabase}"/>
       <bootclasspath refid="essencedatabase.module.bootclasspath"/>
       <classpath refid="essencedatabase.module.production.classpath"/>
       <src refid="essencedatabase.module.sourcepath"/>
       <patternset refid="excluded.from.compilation.essencedatabase"/>
-    </javac2>
+    </javac>
     
     <copy todir="${essencedatabase.output.dir}">
       <fileset dir="${module.essencedatabase.basedir}/gen">
@@ -145,7 +145,7 @@
     </copy>
   </target>
   
-  <target name="compile.module.essencedatabase.tests" depends="compile.module.essencedatabase.production" description="compile module EssenceDatabase; test classes" unless="skip.tests"/>
+  <target name="compile.module.essencedatabase.tests" depends="register.custom.compilers,compile.module.essencedatabase.production" description="compile module EssenceDatabase; test classes" unless="skip.tests"/>
   
   <target name="clean.module.essencedatabase" description="cleanup module">
     <delete dir="${essencedatabase.output.dir}"/>

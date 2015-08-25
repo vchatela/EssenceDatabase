@@ -43,8 +43,8 @@
       <file leaf-file-name="essencedatabase.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/essencedatabase.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26803014">
-              <caret line="129" column="68" selection-start-line="129" selection-start-column="68" selection-end-line="129" selection-end-column="68" />
+            <state vertical-scroll-proportion="1.8234661">
+              <caret line="133" column="67" selection-start-line="133" selection-start-column="67" selection-end-line="133" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -402,12 +402,12 @@
       <created>1440516389052</created>
       <option name="number" value="Default" />
       <updated>1440516389052</updated>
-      <workItem from="1440516391042" duration="2209000" />
+      <workItem from="1440516391042" duration="2490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2209000" />
+    <option name="totallyTimeSpent" value="2490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -487,8 +487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/essencedatabase.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26803014">
-          <caret line="129" column="68" selection-start-line="129" selection-start-column="68" selection-end-line="129" selection-end-column="68" />
+        <state vertical-scroll-proportion="1.8234661">
+          <caret line="133" column="67" selection-start-line="133" selection-start-column="67" selection-end-line="133" selection-end-column="67" />
           <folding />
         </state>
       </provider>
