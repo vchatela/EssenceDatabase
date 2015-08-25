@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d9aa5883-443d-4a33-8a5c-181e6ab89e85" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/essencedatabase.xml" afterPath="$PROJECT_DIR$/essencedatabase.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EssenceDatabase.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +43,8 @@
       <file leaf-file-name="essencedatabase.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/essencedatabase.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="131" column="212" selection-start-line="131" selection-start-column="212" selection-end-line="131" selection-end-column="212" />
+            <state vertical-scroll-proportion="0.90555555">
+              <caret line="164" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="164" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -410,12 +409,12 @@
       <option name="number" value="Default" />
       <updated>1440516389052</updated>
       <workItem from="1440516391042" duration="2490000" />
-      <workItem from="1440519767893" duration="137000" />
+      <workItem from="1440519767893" duration="285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2627000" />
+    <option name="totallyTimeSpent" value="2775000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -519,8 +518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/essencedatabase.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="131" column="212" selection-start-line="131" selection-start-column="212" selection-end-line="131" selection-end-column="212" />
+        <state vertical-scroll-proportion="0.90555555">
+          <caret line="164" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="164" selection-end-column="10" />
           <folding />
         </state>
       </provider>

@@ -157,7 +157,8 @@
   </target>
   <target name="debug" depends="init, clean, compile.module.essencedatabase" description="debug build all"/>
   <target name="clean" depends="clean.module.essencedatabase" description="cleanup all"/>
-  
+  <target name="install" depends="" description="install"/>
+  <target name="test" depends="" description="tests"/>
   <target name="build.modules" depends="init, clean, compile.module.essencedatabase" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
