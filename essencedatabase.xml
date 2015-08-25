@@ -145,7 +145,7 @@
     </copy>
   </target>
   
-  <target name="compile.module.essencedatabase.tests" depends="register.custom.compilers,compile.module.essencedatabase.production" description="compile module EssenceDatabase; test classes" unless="skip.tests"/>
+  <target name="compile.module.essencedatabase.tests" depends="compile.module.essencedatabase.production" description="compile module EssenceDatabase; test classes" unless="skip.tests"/>
   
   <target name="clean.module.essencedatabase" description="cleanup module">
     <delete dir="${essencedatabase.output.dir}"/>
