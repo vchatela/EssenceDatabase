@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 /**
  * Author :Valentin Chatelard
@@ -20,8 +20,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EssenseDatabase.library.DatabaseHandler;
-import com.example.EssenseDatabase.library.UserFunctions;
+import net.valentinc.EssenceDatabase.library.DatabaseHandler;
+import net.valentinc.EssenceDatabase.library.UserFunctions;
 import org.json.JSONException;
 import org.json.JSONObject;
 

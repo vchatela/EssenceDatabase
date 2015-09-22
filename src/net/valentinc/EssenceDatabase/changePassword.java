@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 /**
  * Author :Valentin Chatelard
@@ -20,8 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.EssenseDatabase.library.DatabaseHandler;
-import com.example.EssenseDatabase.library.UserFunctions;
+import net.valentinc.EssenceDatabase.library.DatabaseHandler;
+import net.valentinc.EssenceDatabase.library.UserFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,7 +59,7 @@ public class changePassword extends Activity {
         cancel.setOnClickListener(new View.OnClickListener(){
             public void onClick(View arg0){
 
-                Intent login = new Intent(getApplicationContext(), main.class);
+                Intent login = new Intent(getApplicationContext(), AddInfo.class);
 
                 startActivity(login);
                 finish();

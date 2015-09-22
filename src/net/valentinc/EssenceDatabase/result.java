@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -63,7 +63,7 @@ public class result extends Activity {
         // On s'occupe des clics sur Rafraichir et Retour
         btnRetour.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), main.class);
+                Intent myIntent = new Intent(view.getContext(), AddInfo.class);
                 startActivityForResult(myIntent, 0);
                 finish();
             }});

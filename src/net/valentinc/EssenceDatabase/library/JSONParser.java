@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase.library;
+package net.valentinc.EssenceDatabase.library;
 
 /**
  * Author :Valentin Chatelard

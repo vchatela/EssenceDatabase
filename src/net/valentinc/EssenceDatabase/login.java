@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 /**
  * Author :Valentin Chatelard
@@ -22,8 +22,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EssenseDatabase.library.DatabaseHandler;
-import com.example.EssenseDatabase.library.UserFunctions;
+import net.valentinc.EssenceDatabase.library.DatabaseHandler;
+import net.valentinc.EssenceDatabase.library.UserFunctions;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -78,7 +78,7 @@ public class login extends Activity {
 
         btnDebug.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), main.class);
+                Intent myIntent = new Intent(view.getContext(), AddInfo.class);
                 startActivityForResult(myIntent, 0);
                 finish();
             }});
@@ -235,7 +235,7 @@ public class login extends Activity {
                         /**
                          *If JSON array details are stored in SQlite it launches the User Panel.
                          **/
-                        Intent upanel = new Intent(getApplicationContext(), main.class);
+                        Intent upanel = new Intent(getApplicationContext(), AddInfo.class);
                         upanel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         pDialog.dismiss();
                         startActivity(upanel);

@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 /**
  * Author :Valentin Chatelard
@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.EssenseDatabase.library.DatabaseHandler;
+import net.valentinc.EssenceDatabase.library.DatabaseHandler;
 
 import java.util.HashMap;
 

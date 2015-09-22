@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 /**
  * Author :Valentin Chatelard
@@ -21,18 +21,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.view.View.OnClickListener;
 
-public class main extends Activity {
+public class AddInfo extends Activity {
 
     /**
      * Called when the activity is first created.
@@ -49,13 +48,6 @@ public class main extends Activity {
     EditText editTextEuro = null;
     EditText editTextEuroLitre = null;
     int retry = 0;
-
-    AlertDialog.Builder builder;
-
-    InputStream is=null;
-    String result=null;
-    String line=null;
-    int code;
 
     // TODO : each user have to have a personnal essenceDatabase with his vehicule
     // TODO : page pour supprimer des valeurs  - créer liste radio avec les valeurs / dates, et mettre en place la suppression ! (via JSON par la date)
@@ -79,10 +71,7 @@ public class main extends Activity {
                 // si c'est les memes valeurs on vérifie que l'utilisateur veut les renvoyers
                 if (saveEuroLitre == valueEuroLitre && saveEuro == valueEuro && saveKm == valueKm) {
                     // On demande si l'utilisateur veut les renvoyer
-
-
                     getYesNoWithExecutionStop("Attention !", "Voulez vous renvoyer les mêmes valeurs ?");
-
                 }
                 // on envoi à la base de donnée
                 Toast.makeText(getApplicationContext(), "Connexion... (" + retry + ")",
@@ -192,11 +181,13 @@ public class main extends Activity {
             public void run() {
                 try
                 {
-
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
+                    HttpURLConnection conn = null;
+                    URL url = new URL("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
                             "&Distance="+editTextKm.getText().toString()+"&PrixLitre="+editTextEuroLitre.getText().toString()+"&Date="+dateString);
-                    httpclient.execute(httppost);
+
+                     conn = (HttpURLConnection) url.openConnection();
+                    conn.getInputStream();
+// TODO : check
                     Log.e("pass 1", "connection success ");
                 }
                 catch(Exception e)

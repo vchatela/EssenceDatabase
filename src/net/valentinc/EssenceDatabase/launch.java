@@ -1,4 +1,4 @@
-package com.example.EssenseDatabase;
+package net.valentinc.EssenceDatabase;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
