@@ -31,14 +31,19 @@ public class result extends Activity {
     Button btnRetour = null;
     TextView TextKmMoyen = null;
     TextView TextKmTotal = null;
-    TextView TextPrixTotal = null;
     TextView TextKmDernier = null;
-    TextView TextEuroMoyen= null;
-    TextView TextEuroDernier = null;
+
+    TextView TextEssenceMoyen = null;
+    TextView TextEssenceDernier = null;
+    TextView TextEssenceTotal = null;
+
     TextView TextPrixMoyen= null;
     TextView TextPrixDernier = null;
+    TextView TextPrixTotal = null;
     TextView TextPrixKm = null;
-    TextView TextView25 = null;
+    TextView TextPrixCovoit = null;
+
+    TextView TextViewInfo = null;
     ArrayList<String> donnees;
 
     @Override
@@ -51,14 +56,19 @@ public class result extends Activity {
         btnRetour  = (Button) findViewById(R.id.buttonRetour);
         TextKmMoyen= (TextView) findViewById(R.id.textViewKmMoyen);
         TextKmDernier = (TextView) findViewById(R.id.textViewKmDernier);
-        TextEuroMoyen = (TextView) findViewById(R.id.textViewEssenceMoyenPlein);
-        TextEuroDernier = (TextView) findViewById(R.id.textViewEssenceDernierPlein);
+        TextKmTotal = (TextView) findViewById(R.id.textViewKmTotal);
+
+        TextEssenceMoyen = (TextView) findViewById(R.id.textViewEssenceMoyenPlein);
+        TextEssenceDernier = (TextView) findViewById(R.id.textViewEssenceDernierPlein);
+        TextEssenceTotal = (TextView) findViewById(R.id.EssenceTotal);
+
         TextPrixDernier = (TextView) findViewById(R.id.textViewPrix);
         TextPrixMoyen = (TextView) findViewById(R.id.textViewPrixMoyen);
         TextPrixKm = (TextView) findViewById(R.id.textViewPrixKm);
-        TextKmTotal = (TextView) findViewById(R.id.textViewKmTotal);
         TextPrixTotal = (TextView) findViewById(R.id.textViewPrixTotal);
-        TextView25 = (TextView) findViewById(R.id.textView25);
+        TextPrixCovoit = (TextView) findViewById(R.id.PrixCovoit);
+
+        TextViewInfo = (TextView) findViewById(R.id.TextViewInfo);
 
         // On s'occupe des clics sur Rafraichir et Retour
         btnRetour.setOnClickListener(new View.OnClickListener() {
@@ -117,11 +127,13 @@ public class result extends Activity {
                         donnees.add(jsonObj.get("lkm").toString() + " km");
                         donnees.add(jsonObj.get("al").toString() + " litres");
                         donnees.add(jsonObj.get("ll").toString() + " litres");
+                        donnees.add(jsonObj.get("tl").toString() + " litres");
                         donnees.add(jsonObj.get("ap").toString() + " €");
                         donnees.add(jsonObj.get("lp").toString() + " €");
                         donnees.add(jsonObj.get("pkm").toString() + " €");
                         donnees.add(jsonObj.get("kmt").toString() + " km");
                         donnees.add(jsonObj.get("pt").toString() + " €");
+                        donnees.add(jsonObj.get("pc").toString() + " €");
                         donnees.add(jsonObj.get("date").toString());
                         donnees.add(jsonObj.get("nbr").toString());
 
@@ -134,8 +146,6 @@ public class result extends Activity {
 
                 } catch (Exception e) {
                     Log.e("Fail 1", e.toString());
-                    // Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                    //       Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -147,13 +157,15 @@ public class result extends Activity {
     public void update_view() {
         TextKmMoyen.setText(donnees.get(0));
         TextKmDernier.setText(donnees.get(1));
-        TextEuroMoyen.setText(donnees.get(2));
-        TextEuroDernier.setText(donnees.get(3));
-        TextPrixMoyen.setText(donnees.get(4));
-        TextPrixDernier.setText(donnees.get(5));
-        TextPrixKm.setText(donnees.get(6));
-        TextKmTotal.setText(donnees.get(7));
-        TextPrixTotal.setText(donnees.get(8));
-        TextView25.setText("Since :  " + donnees.get(9) + "     avec    " + donnees.get(10) + "  échantillons. ");
+        TextEssenceMoyen.setText(donnees.get(2));
+        TextEssenceDernier.setText(donnees.get(3));
+        TextEssenceTotal.setText(donnees.get(4));
+        TextPrixMoyen.setText(donnees.get(5));
+        TextPrixDernier.setText(donnees.get(6));
+        TextPrixKm.setText(donnees.get(7));
+        TextKmTotal.setText(donnees.get(8));
+        TextPrixTotal.setText(donnees.get(9));
+        TextPrixCovoit.setText(donnees.get(10));
+        TextViewInfo.setText("Since :  " + donnees.get(11) + "     avec    " + donnees.get(12) + "  échantillons. ");
     }
 }

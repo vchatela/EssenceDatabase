@@ -38,7 +38,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_below="@+id/textViewKm"
                 android:layout_centerHorizontal="true"
-                android:inputType="number"/>
+                android:inputType="number|numberSigned|numberDecimal"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:layout_width="250dp"
                 android:layout_height="65dp"
                 android:id="@+id/editTextEuro" android:layout_row="65" android:layout_column="12"
-                android:inputType="number"
+                android:inputType="number|numberSigned|numberDecimal"
                 android:editable="true"
                 android:autoText="false"
                 android:background="@android:color/transparent"
@@ -81,7 +81,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_below="@+id/textViewEssenceMoyenPlein"
                 android:layout_centerHorizontal="true"
-                android:inputType="number"/>
+                android:inputType="number|numberSigned|numberDecimal"/>
 
         <Button
                 android:layout_width="176dp"
@@ -121,6 +121,10 @@
                         android:background="@android:color/transparent"
                         android:layout_below="@+id/editTextEuroLitre"
                         android:layout_centerHorizontal="true"/>
+                <Button android:layout_width="210dp" android:layout_height="50dp" android:text="Gérer les valeurs"
+                        android:id="@+id/buttonManage"
+                        android:background="@android:color/transparent"
+                        android:layout_below="@+id/buttonResultats" android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 </LinearLayout>
 

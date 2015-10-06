@@ -182,8 +182,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/textViewPrix"
-                android:layout_alignBottom="@+id/textView20"
-                android:layout_alignParentEnd="true"/>
+                android:layout_below="@+id/textView" android:layout_alignParentEnd="true"/>
 
         <Button
                 android:layout_width="180dp"
@@ -221,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textViewPrixKm"
-                    android:layout_below="@+id/textViewPrix"
+                    android:layout_alignBaseline="@+id/textView22" android:layout_alignBottom="@+id/textView22"
                     android:layout_alignParentEnd="true"/>
 
             <TextView
@@ -229,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textViewPrixTotal"
-                    android:layout_alignBottom="@+id/textView24"
+                    android:layout_alignBaseline="@+id/textView24" android:layout_alignBottom="@+id/textView24"
                     android:layout_alignParentEnd="true"/>
 
             <TextView
@@ -267,10 +266,26 @@
                     android:layout_height="25dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Since : xx/xx/xxxx     avec      X échantillons"
-                    android:id="@+id/textView25"
-                    android:layout_below="@+id/textViewPrixTotal"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="23dp"/>
+                    android:id="@+id/TextViewInfo"
+                    android:layout_below="@+id/textView27" android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"/>
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:id="@+id/EssenceTotal"
+                      android:layout_below="@+id/textView19"
+                      android:layout_alignStart="@+id/textViewEssenceDernierPlein"/>
+            <TextView android:layout_width="250dp" android:layout_height="25dp"
+                      android:textAppearance="?android:attr/textAppearanceMedium" android:text="Essence Total"
+                      android:id="@+id/textView26" android:textSize="15dp"
+                      android:layout_above="@+id/textView17" android:layout_alignParentStart="true"/>
+            <TextView android:layout_width="250dp" android:layout_height="25dp"
+                      android:textAppearance="?android:attr/textAppearanceSmall" android:text="Prix Covoit Toulouse - Pau"
+                      android:id="@+id/textView27" android:textSize="15dp" android:textColor="#ffffffff"
+                      android:layout_below="@+id/textView24" android:layout_alignParentStart="true"/>
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceMedium" android:id="@+id/PrixCovoit"
+                      android:layout_alignBaseline="@+id/textView27" android:layout_alignBottom="@+id/textView27"
+                      android:layout_alignEnd="@+id/TextViewInfo"/>
 
     </RelativeLayout>
 

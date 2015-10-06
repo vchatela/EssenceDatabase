@@ -22,7 +22,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
@@ -49,9 +51,12 @@ public class AddInfo extends Activity {
     EditText editTextEuroLitre = null;
     int retry = 0;
 
+    private double valueEuro;
+    private double valueEuroLitre;
+    private double valueKm;
+
     // TODO : each user have to have a personnal essenceDatabase with his vehicule
     // TODO : page pour supprimer des valeurs  - créer liste radio avec les valeurs / dates, et mettre en place la suppression ! (via JSON par la date)
-    //TODO : gestion de la nouvelle activité : résultat de la database (moyenne etc)
     private OnClickListener validerButton = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -63,9 +68,9 @@ public class AddInfo extends Activity {
             }
             envoi = true;
             retry++;
-            double valueEuro = Double.parseDouble(editTextEuro.getText().toString());
-            double valueEuroLitre = Double.parseDouble(editTextEuroLitre.getText().toString());
-            double valueKm = Double.parseDouble(editTextKm.getText().toString());
+            valueEuro = Double.parseDouble(editTextEuro.getText().toString());
+            valueEuroLitre = Double.parseDouble(editTextEuroLitre.getText().toString());
+            valueKm = Double.parseDouble(editTextKm.getText().toString());
             // on vérifie les valeurs
             if (!(valueEuro < 0 || valueEuroLitre < 0 || valueKm < 0 || valueEuro > 90 || valueEuroLitre > 3 || valueKm > 1500)) {
                 // si c'est les memes valeurs on vérifie que l'utilisateur veut les renvoyers
@@ -74,7 +79,8 @@ public class AddInfo extends Activity {
                     getYesNoWithExecutionStop("Attention !", "Voulez vous renvoyer les mêmes valeurs ?");
                 }
                 // on envoi à la base de donnée
-                Toast.makeText(getApplicationContext(), "Connexion... (" + retry + ")",
+                if(retry != 1)
+                    Toast.makeText(getApplicationContext(), "Connexion... (" + retry + ")",
                         Toast.LENGTH_LONG).show();
                 if (envoi) {
                     try {
@@ -115,14 +121,12 @@ public class AddInfo extends Activity {
         editTextKm = (EditText) findViewById(R.id.editTextKm);
         // on attribue un listener adapté aux vue
         ValiderButton.setOnClickListener(validerButton);
-        // TODO : bar de progression
 
         btnResultat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), result.class);
                 startActivityForResult(myIntent, 0);
-                //finish();
             }
         });
         btnRetour.setOnClickListener(new View.OnClickListener() {
@@ -175,19 +179,30 @@ public class AddInfo extends Activity {
         Date date = new Date();
         DateFormat dateformat= new SimpleDateFormat("yyyy-MM-dd");
         String dateString = dateformat.format(date);
-
-        new Thread(new Runnable() {
+        final boolean[] issue = {false};
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 try
                 {
-                    HttpURLConnection conn = null;
-                    URL url = new URL("http://88.142.52.11/android/insert.php?Prix="+editTextEuro.getText().toString()+
-                            "&Distance="+editTextKm.getText().toString()+"&PrixLitre="+editTextEuroLitre.getText().toString()+"&Date="+dateString);
+                    HttpURLConnection conn;
+                    URL url = new URL("http://88.142.52.11/android/insert.php?Prix="+valueEuro+
+                            "&Distance="+valueKm+"&PrixLitre="+valueEuroLitre+"&Date="+dateString);
 
                      conn = (HttpURLConnection) url.openConnection();
-                    conn.getInputStream();
-// TODO : check
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder total = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        total.append(line);
+                    }
+                    if(!total.equals("{\"code\":0}")){
+                        // TODO : restore value ?
+                        Toast.makeText(getApplicationContext(), "MySQL error. Please resend it.",
+                                Toast.LENGTH_LONG).show();
+                        issue[0] = true;
+                    }
                     Log.e("pass 1", "connection success ");
                 }
                 catch(Exception e)
@@ -195,18 +210,17 @@ public class AddInfo extends Activity {
                     Log.e("Fail 1", e.toString());
                     Toast.makeText(getApplicationContext(), "Invalid IP Address",
                             Toast.LENGTH_LONG).show();
+                    issue[0] = true;
                 }
             }
-        }).start();
-        return true;
+        });
+        t.start();
+        t.join();
+        return !issue[0];
     }
 
     @Override
-    // méthode qui se lance lorsqu'on appuie sur le bouton meu du téléphone
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        // TODO : gérer le menu :)
-        // inflater.inflate(R.layout.menu, menu);
         return true;
     }
 }

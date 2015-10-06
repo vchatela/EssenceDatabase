@@ -48,8 +48,6 @@ public class launch extends Activity{
         // On va vérifier le réseau puis login si ok
         sync = new NetCheck().execute();
 
-        // maintenant une fois le thread terminé on vérifie le résultat et on lance le bon
-
         try {
             sync.get(1200, TimeUnit.MILLISECONDS);
         }
@@ -173,6 +171,7 @@ public class launch extends Activity{
                 p = (ProgressBar) findViewById(R.id.progressBar);
                 p.setVisibility(View.INVISIBLE);
                 textOk.setText("Error in Network Connection");
+                //TODO : but as button
                 textOk.setGravity(Gravity.CENTER);
             }
         }

@@ -38,3 +38,5 @@ proguard/
 .idea\*\*
 gen/*
 gen\*
+out/*
+out\*
