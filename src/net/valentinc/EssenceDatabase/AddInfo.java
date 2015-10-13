@@ -46,6 +46,7 @@ public class AddInfo extends Activity {
     Button ValiderButton = null;
     Button btnRetour = null;
     Button btnResultat = null;
+    Button btnManage = null;
     EditText editTextKm = null;
     EditText editTextEuro = null;
     EditText editTextEuroLitre = null;
@@ -115,6 +116,7 @@ public class AddInfo extends Activity {
         ValiderButton = (Button) findViewById(R.id.okButton);
         btnRetour = (Button) findViewById(R.id.buttonRetour);
         btnResultat = (Button) findViewById(R.id.buttonResultats);
+        btnManage = (Button) findViewById(R.id.buttonManage);
 
         editTextEuro = (EditText) findViewById(R.id.editTextEuro);
         editTextEuroLitre = (EditText) findViewById(R.id.editTextEuroLitre);
@@ -127,17 +129,18 @@ public class AddInfo extends Activity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), result.class);
                 startActivityForResult(myIntent, 0);
+                finish();
             }
         });
-        btnRetour.setOnClickListener(new View.OnClickListener() {
+
+        btnManage.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), login.class);
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), Manage.class);
                 startActivityForResult(myIntent, 0);
                 finish();
-            }});
-
-
+            }
+        });
     }
 
     public void getYesNoWithExecutionStop(String title, String message) {
@@ -197,25 +200,24 @@ public class AddInfo extends Activity {
                     while ((line = r.readLine()) != null) {
                         total.append(line);
                     }
-                    if(!total.equals("{\"code\":0}")){
-                        // TODO : restore value ?
-                        Toast.makeText(getApplicationContext(), "MySQL error. Please resend it.",
-                                Toast.LENGTH_LONG).show();
+                    String code = "{\"code\":0}";
+                    if(total.toString().equals(code)){
                         issue[0] = true;
                     }
-                    Log.e("pass 1", "connection success ");
                 }
                 catch(Exception e)
                 {
                     Log.e("Fail 1", e.toString());
-                    Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                            Toast.LENGTH_LONG).show();
                     issue[0] = true;
                 }
             }
         });
         t.start();
         t.join();
+        if(issue[0]){
+            Toast.makeText(getApplicationContext(), "MySQL error. Please resend it.",
+                    Toast.LENGTH_LONG).show();
+        }
         return !issue[0];
     }
 

@@ -43,7 +43,7 @@ public class launch extends Activity{
     public TextClock t;
     public AsyncTask<String,String,Boolean> sync;
     public Button but;
-
+//TODO : error network check it
     public void testNetwork(){
         // On va vérifier le réseau puis login si ok
         sync = new NetCheck().execute();
@@ -74,9 +74,8 @@ public class launch extends Activity{
                 public void run() {
                     try {
                         Thread.sleep(3000);
-                        Intent i = new Intent(getApplicationContext(), login.class);
+                        Intent i = new Intent(getApplicationContext(), AddInfo.class);
                         startActivity(i);
-                        //launch.this.finish();
                         finish();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
