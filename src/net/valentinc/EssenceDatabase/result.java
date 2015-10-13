@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 /**
  * Created by valentin on 25/06/15.
+ *
  */
 public class result extends Activity {
     Button btnRafraichir = null;
@@ -166,6 +167,6 @@ public class result extends Activity {
         TextKmTotal.setText(donnees.get(8));
         TextPrixTotal.setText(donnees.get(9));
         TextPrixCovoit.setText(donnees.get(10));
-        TextViewInfo.setText("Since :  " + donnees.get(11) + "     avec    " + donnees.get(12) + "  échantillons. ");
+        TextViewInfo.setText("Depuis :  " + donnees.get(11) + "     avec    " + donnees.get(12) + "  échantillons. ");
     }
 }

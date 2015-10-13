@@ -129,7 +129,6 @@ public class AddInfo extends Activity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), result.class);
                 startActivityForResult(myIntent, 0);
-                finish();
             }
         });
 
@@ -137,8 +136,7 @@ public class AddInfo extends Activity {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), Manage.class);
-                startActivityForResult(myIntent, 0);
-                finish();
+                startActivity(myIntent);
             }
         });
     }
@@ -190,7 +188,7 @@ public class AddInfo extends Activity {
                 {
                     HttpURLConnection conn;
                     URL url = new URL("http://88.142.52.11/android/insert.php?Prix="+valueEuro+
-                            "&Distance="+valueKm+"&PrixLitre="+valueEuroLitre+"&Date="+dateString);
+                            "&Distance="+valueKm+"&PrixLitre="+valueEuroLitre+"&Date="+dateString+"&Function=insert");
 
                      conn = (HttpURLConnection) url.openConnection();
                     InputStream inputStream = conn.getInputStream();

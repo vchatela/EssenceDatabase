@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_gravity="center_horizontal"
+            android:background="@drawable/android" android:id="@+id/Relative">
+        <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/textView2" android:layout_alignParentStart="true"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Manage"
+                android:id="@+id/textView2" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Distance"
+                android:id="@+id/textViewDistance"
+                android:layout_marginTop="61dp"
+                android:layout_below="@+id/spinner" android:layout_toStartOf="@+id/textView2"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="Prix"
+                  android:id="@+id/textViewPrix"
+                  android:layout_marginTop="56dp"
+                  android:layout_below="@+id/textViewDistance" android:layout_alignEnd="@+id/textViewDistance"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="Prix au litre"
+                  android:id="@+id/textViewPrixLitre"
+                  android:layout_marginTop="55dp"
+                  android:layout_below="@+id/textViewPrix" android:layout_alignEnd="@+id/textViewPrix"/>
+        <EditText
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textViewEditDistance"
+                android:editable="false"
+                android:inputType="number|numberSigned|numberDecimal"
+                android:textSize="22dp"
+                android:layout_marginStart="54dp" android:layout_above="@+id/textViewPrix"
+                android:layout_toEndOf="@+id/textViewDistance" android:autoText="false"
+                android:background="@android:color/transparent"/>
+        <EditText android:layout_width="100dp" android:layout_height="50dp"
+                  android:textAppearance="?android:attr/textAppearanceLarge"
+                  android:id="@+id/textViewEditPrix" android:editable="false"
+                  android:inputType="number|numberSigned|numberDecimal"
+                  android:textSize="22dp"
+                  android:layout_above="@+id/textViewPrixLitre" android:layout_alignStart="@+id/textViewEditDistance"
+                  android:background="@android:color/transparent"/>
+        <EditText android:layout_width="100dp" android:layout_height="50dp"
+                  android:textAppearance="?android:attr/textAppearanceLarge"
+                  android:id="@+id/textViewEditPrixLitre" android:editable="false"
+                  android:inputType="number|numberSigned|numberDecimal"
+                  android:textSize="22dp"
+                  android:layout_alignBottom="@+id/textViewPrixLitre" android:layout_alignStart="@+id/textViewEditPrix"
+                  android:background="@android:color/transparent"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="km"
+                android:id="@+id/textViewUniteDistance"
+                android:layout_alignBottom="@+id/textViewEditDistance"
+                android:layout_toEndOf="@+id/textViewEditDistance" android:layout_marginStart="25dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="€"
+                  android:id="@+id/textViewUnitePrix"
+                  android:layout_alignTop="@+id/textViewPrix" android:layout_alignStart="@+id/textViewUniteDistance"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="€/L"
+                  android:id="@+id/textViewUnitePrixLitre"
+                  android:layout_alignBottom="@+id/textViewEditPrixLitre" android:layout_alignStart="@+id/textViewUnitePrix"/>
+        <Button android:layout_width="176dp" android:layout_height="81dp" android:text="Modifier"
+                android:id="@+id/buttonModificate" android:layout_row="74" android:layout_column="12"
+                android:layout_gravity="left" android:background="?android:attr/selectableItemBackground"
+                android:textSize="20sp" android:layout_marginLeft="0dp"
+                android:layout_alignParentBottom="true" android:layout_alignParentStart="true"/>
+        <Button android:layout_width="176dp" android:layout_height="81dp" android:text="Supprimer"
+                android:id="@+id/buttonDelete" android:layout_row="74" android:layout_column="12"
+                android:layout_gravity="left" android:background="?android:attr/selectableItemBackground"
+                android:textSize="20sp" android:layout_marginLeft="0dp"
+                android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"/>
+        <Button android:layout_width="80dp" android:layout_height="50dp" android:text="OK"
+                android:id="@+id/buttonOK" android:layout_row="74" android:layout_column="12"
+                android:layout_gravity="left" android:background="?android:attr/selectableItemBackground"
+                android:textSize="20sp" android:layout_marginLeft="0dp"
+                android:layout_above="@+id/buttonModificate" android:layout_alignEnd="@+id/textView2"
+                android:visibility="invisible"/>
+    </RelativeLayout>
+</LinearLayout>

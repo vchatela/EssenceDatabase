@@ -49,13 +49,11 @@ public class launch extends Activity{
         sync = new NetCheck().execute();
 
         try {
-            sync.get(1200, TimeUnit.MILLISECONDS);
+            sync.get();
         }
         catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
             e.printStackTrace();
         }
         Log.d("DEBUG", sync.getStatus().toString());
