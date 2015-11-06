@@ -40,3 +40,4 @@ gen/*
 gen\*
 out/*
 out\*
+app/.idea/*
