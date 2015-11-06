@@ -179,7 +179,7 @@ public class AddInfo extends Activity {
     public boolean insert() throws InterruptedException {
         Date date = new Date();
         DateFormat dateformat= new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = dateformat.format(date);
+        final String dateString = dateformat.format(date);
         final boolean[] issue = {false};
         Thread t = new Thread(new Runnable() {
             @Override

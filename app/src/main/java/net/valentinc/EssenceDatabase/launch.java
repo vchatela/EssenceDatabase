@@ -156,7 +156,7 @@ public class launch extends Activity{
         @Override
         protected void onPostExecute(Boolean th){
             textOk = (TextView) findViewById(R.id.textOk);
-            if(th == true){
+            if(thread == true){
                 // on met le message vérification à OK
                 textOk.setText("Connecté");
                 textOk.setGravity(Gravity.CENTER);

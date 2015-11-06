@@ -143,7 +143,7 @@ public class result extends Activity {
                     } catch (ParseException e) {
                         Log.i("tagjsonpars", "" + e.toString());
                     }
-                    Log.e("pass 1", "connection success ");
+                    Log.i("pass 1", "connection success ");
 
                 } catch (Exception e) {
                     Log.e("Fail 1", e.toString());
