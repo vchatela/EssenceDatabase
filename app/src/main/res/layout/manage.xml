@@ -31,14 +31,14 @@
                 android:layout_below="@+id/spinner" android:layout_toStartOf="@+id/textView2"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceLarge" android:text="Prix"
-                  android:id="@+id/textViewPrix"
+                  android:id="@+id/textViewL100"
                   android:layout_marginTop="56dp"
                   android:layout_below="@+id/textViewDistance" android:layout_alignEnd="@+id/textViewDistance"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceLarge" android:text="Prix au litre"
                   android:id="@+id/textViewPrixLitre"
                   android:layout_marginTop="55dp"
-                  android:layout_below="@+id/textViewPrix" android:layout_alignEnd="@+id/textViewPrix"/>
+                  android:layout_below="@+id/textViewL100" android:layout_alignEnd="@+id/textViewL100"/>
         <EditText
                 android:layout_width="100dp"
                 android:layout_height="50dp"
@@ -47,7 +47,7 @@
                 android:editable="false"
                 android:inputType="number|numberSigned|numberDecimal"
                 android:textSize="22dp"
-                android:layout_marginStart="54dp" android:layout_above="@+id/textViewPrix"
+                android:layout_marginStart="54dp" android:layout_above="@+id/textViewL100"
                 android:layout_toEndOf="@+id/textViewDistance" android:autoText="false"
                 android:background="@android:color/transparent"/>
         <EditText android:layout_width="100dp" android:layout_height="50dp"
@@ -75,7 +75,7 @@
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceMedium" android:text="€"
                   android:id="@+id/textViewUnitePrix"
-                  android:layout_alignTop="@+id/textViewPrix" android:layout_alignStart="@+id/textViewUniteDistance"/>
+                  android:layout_alignTop="@+id/textViewL100" android:layout_alignStart="@+id/textViewUniteDistance"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceMedium" android:text="€/L"
                   android:id="@+id/textViewUnitePrixLitre"
