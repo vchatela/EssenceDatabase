@@ -2,7 +2,10 @@
 
 This application, through a friendly interface, manage a database which contain information about car consumption.
 
-![screenshot](http://img15.hostingpics.net/pics/799894dygfCGh1S0FApyMPkbX63qKacvm59lLusZe4jEOoimaster.png)
+![screenshot](http://oi68.tinypic.com/maw18j.jpg)
+
+##Update
+Refractor view/server to have new information
 
 ## Features
 * Manage account
